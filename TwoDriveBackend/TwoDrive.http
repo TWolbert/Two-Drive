@@ -1,0 +1,12 @@
+@TwoDrive_HostAddress = http://localhost:5136
+
+GET {{TwoDrive_HostAddress}}/weatherforecast/
+
+GET {{TwoDrive_HostAddress}}/user/
+POST {{TwoDrive_HostAddress}}/user/
+PUT {{TwoDrive_HostAddress}}/user/
+DELETE {{TwoDrive_HostAddress}}/user/
+
+Accept: application/json
+
+###
