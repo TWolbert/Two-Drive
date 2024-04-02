@@ -14,7 +14,6 @@ namespace TwoDrive.Controllers;
 public class ImageController : ControllerBase
 {
     private readonly TwoDriveContext _context;
-    private readonly string key128bit = "12345678901234561234567890123456";
 
     private readonly ILogger<ImageController> _logger;
 

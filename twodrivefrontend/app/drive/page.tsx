@@ -71,7 +71,7 @@ export default async function DriveIndex() {
                                     width={100}
                                     height={100}
                                     src={`/api/image/${drive.imageId}`}
-                                    alt={drive.name}
+                                    alt={`${drive.name}'s icon`}
                                     className=" aspect-square border-2 border-blue-500 rounded-xl object-cover group-hover:-translate-y-2 transition-all shadow-lg"
                                 />
                                 <h1 className="font-bold">{drive.name}</h1>

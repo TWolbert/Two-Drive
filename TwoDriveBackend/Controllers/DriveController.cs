@@ -18,7 +18,6 @@ namespace TwoDrive.Controllers;
 public class DriveController : ControllerBase
 {
     private readonly TwoDriveContext _context;
-    private readonly string key128bit = "12345678901234561234567890123456";
 
     private readonly ILogger<UserController> _logger;
     private readonly JwtSecurityTokenHandler _tokenHandler;
