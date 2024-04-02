@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace TwoDrive.Migrations
 {
     [DbContext(typeof(TwoDriveContext))]
-    partial class TwoDriveContextModelSnapshot : ModelSnapshot
+    [Migration("20240402160657_RemoveUserTokensIndex")]
+    partial class RemoveUserTokensIndex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
@@ -95,7 +98,8 @@ namespace TwoDrive.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Token");
                 });
@@ -149,12 +153,17 @@ namespace TwoDrive.Migrations
             modelBuilder.Entity("TwoDrive.Models.Token", b =>
                 {
                     b.HasOne("TwoDrive.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Token")
+                        .HasForeignKey("TwoDrive.Models.Token", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TwoDrive.Models.User", b =>
+                {
+                    b.Navigation("Token");
                 });
 #pragma warning restore 612, 618
         }

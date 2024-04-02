@@ -7,5 +7,4 @@ public class User {
     public string? Password { get; set; }
     public DateTime? date_created { get; set; }
     public DateTime? date_modified { get; set; }
-    public List<Token>? Tokens { get; set; }
 }

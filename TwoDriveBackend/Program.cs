@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TwoDrive.GenericUtils;
 using TwoDrive.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FilePolicy", policy => 
+    {
+        policy.WithOrigins(
+            Utils.GetFrontendUrl() 
+        ).AllowAnyMethod().AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
@@ -25,5 +36,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();

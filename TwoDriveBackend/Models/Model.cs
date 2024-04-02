@@ -23,12 +23,4 @@ public class TwoDriveContext : DbContext
     // special "local" folder for your platform.
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite($"Data Source={DbPath}");
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Token>()
-            .HasOne(t => t.User)
-            .WithMany(u => u.Tokens)
-            .HasForeignKey(t => t.UserId);
-    }
 }

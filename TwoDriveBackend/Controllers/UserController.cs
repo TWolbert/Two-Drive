@@ -84,6 +84,15 @@ public class UserController : ControllerBase
             signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key128bit)), SecurityAlgorithms.HmacSha256)
         ));
 
+        // Remove old token if exists
+        var oldToken = _context.Token.FirstOrDefault(t => t.UserId == userFound.Id);
+        if (oldToken != null)
+        {
+            _context.Token.Remove(oldToken);
+        }
+
+        _context.SaveChanges();
+
         _context.Token.Add(new Token
         {
             UserId = userFound.Id,
@@ -99,6 +108,21 @@ public class UserController : ControllerBase
             token = token,
             message = "Login successful"
         };
+    }
+
+    [HttpPost("me", Name = "Me")]
+    public User Me([FromBody] AuthMeRequest token)
+    {
+        var tokenFound = _context.Token.FirstOrDefault(t => t.Value == token.Token);
+        if (tokenFound == null)
+        {
+            return new User
+            {
+                Name = "Token not found"
+            };
+        }
+
+        return _context.User.Find(tokenFound.UserId)!;
     }
 
     // Token validation function

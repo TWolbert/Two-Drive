@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TwoDrive")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54d402f7ad6f5d7e07adefe3248c56b8d287825a")]
 [assembly: System.Reflection.AssemblyProductAttribute("TwoDrive")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TwoDrive")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
